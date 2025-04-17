@@ -155,9 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${total_price} ₽</td>
                 <td>${order.delivery_date} ${order.delivery_interval}</td>
                 <td>
-                    <button class="view-order" data-id="${order.id}">👁</button>
-                    <button class="edit-order" data-id="${order.id}">✏</button>
-                    <button class="delete-order" data-id="${order.id}">🗑</button>
+                    <button class="view-order" data-id="${order.id}">Просмотр</button>
+                    <button class="edit-order" data-id="${order.id}">Редактирование</button>
+                    <button class="delete-order" data-id="${order.id}">Удаление</button>
                 </td>
             `;
             ordersList.appendChild(row);
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("edit-comment").value = order.comment || "";
         document.getElementById("edit-order-modal").classList.remove("hidden");
     
-        // 🎯 Пересчёт цены при изменении даты или времени
+        // Пересчёт цены при изменении даты или времени
         async function recalculatePriceOnEdit() {
             const newDate = document.getElementById("edit-date").value;
             const newTime = document.getElementById("edit-time").value;

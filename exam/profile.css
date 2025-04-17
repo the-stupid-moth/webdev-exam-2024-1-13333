@@ -100,7 +100,7 @@ h1 {
 
 button {
   border: none;
-  padding: 10px;
+  padding: 2px;
   font-size: 24px;
   cursor: pointer;
 
@@ -109,27 +109,34 @@ button {
 }
 
 .view-order {
-  background-color: #767e05;
-  color: #fff;
+  background-color: lightgray;
+  color: black;
+  font-size: 10px;
+  border: 1px solid black;
+
 }
 
 .edit-order {
-  background-color: #3c95ac;
-  color: #fff;
+  background-color: lightgray;
+  color: black;
+  font-size: 10px;
+  border: 1px solid black;
 }
 
 .delete-order {
-  background-color: #520a1e;
-  color: #fff;
+  background-color: lightgray;
+  color: black;
+  font-size: 10px;
+  border: 1px solid black;
 }
 
-.view-order, .edit-order, .delete-order {
+/* .view-order, .edit-order, .delete-order {
   height: 50px;
   width: 50px;
-}
+} */
 
 button:hover {
-  border: blacks;
+  border: black;
 }
 
 .modal {
