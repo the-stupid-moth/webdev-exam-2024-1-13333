@@ -69,12 +69,12 @@ function renderProducts(products) {
 }
 
 //Загрузка товаров с сервера + обработка + отображение
-async function fetchProducts(page, sortOrder) {
-  const API_URL = `https://edu.std-900.ist.mospolytech.ru/exam-2024-1/api/goods?api_key=ea0cb7c7-758b-482c-a02f-5f6c15ccbab5&page=${page}&per_page=${perPage}&sort_order=${sortOrder}`;
+async function fetchProducts(page, sortOrder, query = "") {
+  const API_URL = `https://edu.std-900.ist.mospolytech.ru/exam-2024-1/api/goods?api_key=ea0cb7c7-758b-482c-a02f-5f6c15ccbab5&page=${page}&per_page=${perPage}&sort_order=${sortOrder}${query ? `&query=${encodeURIComponent(query)}` : ""}`;
 
-  try { 
-    const response = await fetch(API_URL); //Асинхронность
-    const data = await response.json(); //Преобразование
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
 
     if (sortOrder.includes("price")) {
       data.goods.sort((a, b) => {
@@ -84,12 +84,11 @@ async function fetchProducts(page, sortOrder) {
       });
     }
 
-    totalProducts = data._pagination.total_count; //Общее кол-во товаров
+    totalProducts = data._pagination.total_count;
 
     renderProducts(data.goods);
 
-    // Скрытие кнопки, если все товары загружены
-    const totalPages = Math.ceil(totalProducts / perPage); 
+    const totalPages = Math.ceil(totalProducts / perPage);
     if (page >= totalPages) {
       loadMoreButton.classList.add("hidden");
     }
@@ -98,6 +97,7 @@ async function fetchProducts(page, sortOrder) {
     showNotification("Ошибка загрузки данных. Попробуйте снова.");
   }
 }
+
 
 //Выделение карточки
 function backlightRgb(HTMLelement) {

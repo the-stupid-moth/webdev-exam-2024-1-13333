@@ -166,8 +166,8 @@ footer {
 
 .order-form {
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #e9f9fa;
+    border: 1px solid black;
     border-radius: 5px;
     margin-top: 20px;
     display: flex;
@@ -215,8 +215,9 @@ footer {
 .order-form textarea {
     padding: 10px;
     font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    color: #000000;
+    border: 1px solid #000000;
+    /* border-radius: 4px; */
     width: auto;
     max-width: 400px;
     box-sizing: border-box;

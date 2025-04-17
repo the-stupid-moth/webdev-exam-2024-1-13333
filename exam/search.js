@@ -48,17 +48,12 @@ searchInput.addEventListener("input", async () => {
 });
 
 // поиск по кнопке "Найти"
-document.getElementById("search-button").addEventListener("click", async () => {
+document.getElementById("search-button").addEventListener("click", () => {
   const query = searchInput.value.trim();
-  const response = await fetch(`https://edu.std-900.ist.mospolytech.ru/exam-2024-1/api/goods?query=${query}&api_key=${apiKey}`);
-  const data = await response.json();
+  currentPage = 1;
+  productGrid.innerHTML = "";
+  fetchProducts(currentPage, currentSortOrder, query);
 
-  productGrid.innerHTML = ""; // очищаем предыдущие товары
-  if (data.length === 0) {
-    productGrid.innerHTML = "<p>Нет товаров, соответствующих вашему запросу.</p>";
-  } else {
-    renderProducts(data); // перерисовываем
-  }
-
-  if (loadMoreButton) loadMoreButton.style.display = "none"; // скрываем кнопку "Загрузить ещё"
+  if (loadMoreButton) loadMoreButton.classList.add("hidden");
 });
+
