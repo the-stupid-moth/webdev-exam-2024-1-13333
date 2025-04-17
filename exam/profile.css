@@ -1,0 +1,265 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.header-nav .icon {
+  text-decoration: none;
+  color: #555;
+  font-size: 1.2em;
+  margin-left: 15px;
+}
+
+.notifications {
+  background-color: #d4edda;
+  color: #fff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  display: none;
+  max-width: 300px; /* Убираем возможное растяжение */
+  word-wrap: break-word;
+}
+
+.notifications.show {
+  display: block;
+}
+
+.notifications.hidden {
+  display: none;
+}
+
+.notifications.success {
+  background-color: #28a745; 
+}
+
+.notifications.error {
+  background-color: #dc3545; 
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.orders-table th, .orders-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.orders-table th {
+  background-color: #629286;
+  color: #fff;
+}
+
+.orders-table td {
+  background-color: #fff;
+  color: #333;
+}
+
+.orders-table .actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  padding: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.view-order {
+  background-color: #767e05;
+  color: #fff;
+}
+
+.edit-order {
+  background-color: #3c95ac;
+  color: #fff;
+}
+
+.delete-order {
+  background-color: #520a1e;
+  color: #fff;
+}
+
+.view-order, .edit-order, .delete-order {
+  height: 50px;
+  width: 50px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.modal {
+  position: fixed;           /* Зафиксировать относительно окна */
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4); /* Полупрозрачная подложка */
+  display: flex;  
+  justify-content: center;
+  align-items: center;  
+  z-index: 9999;             /* Выше основного контента */
+}
+.modal.hidden {
+  display: none !important;  /* Когда модалка скрыта */
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;              /* Ширину подберите под свой дизайн */
+  max-height: 80vh;          /* Чтобы окно не «вылезало» за экран */
+  overflow-y: auto;          /* Скролл, если контента много */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.modal-footer {
+  grid-column: 1 / -1; /* Чтобы заняли всю ширину формы (обе колонки) */
+  text-align: right;
+  margin-top: 10px;
+}
+.modal-footer button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-footer button:hover {
+  opacity: 0.85;
+}
+
+#edit-order-form {
+  display: grid;
+  grid-template-columns: max-content 1fr; 
+  /* max-content для лейблов, чтобы подстраивались по ширине текста,
+     1fr - для полей. */
+  column-gap: 16px; /* Горизонтальный зазор */
+  row-gap: 12px;    /* Вертикальный зазор */
+  margin-top: 10px;
+}
+
+/* Подписи полей (label) выравниваем справа */
+#edit-order-form label {
+  text-align: right;
+  font-weight: bold;
+  align-self: center; /* Горизонтально по центру */
+}
+
+/* Поля ввода, textarea, select */
+#edit-order-form input,
+#edit-order-form select,
+#edit-order-form textarea {
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Чтобы padding не раздвигал поле */
+}
+
+/* Для тех span, где у нас просто текст (Дата оформления, Состав заказа и т.д.) */
+#edit-order-form span {
+  align-self: center; 
+}
+
+.view-order-details .form-row {
+  display: flex;
+  margin-bottom: 8px; /* отступ между строками */
+}
+
+.view-order-details .form-label {
+  width: 150px;       /* или auto, если нужно */
+  font-weight: bold;
+  margin-right: 10px; /* отступ между меткой и значением */
+}
+
+.view-order-details .form-value {
+  flex: 1;            /* растягиваем на оставшуюся ширину */
+}
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .orders-table, .orders-table thead, .orders-table tbody, .orders-table th, .orders-table td, .orders-table tr {
+      display: block;
+  }
+
+  .orders-table tr {
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+  }
+
+  .orders-table td {
+      text-align: left;
+      padding-left: 50%;
+      position: relative;
+  }
+
+  .orders-table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+      color: #007bff;
+  }
+
+  .orders-table th {
+      display: none;
+  }
+}
